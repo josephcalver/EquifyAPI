@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using EquifyAPI.Models;
 
 namespace EquifyAPI.Models
 {
