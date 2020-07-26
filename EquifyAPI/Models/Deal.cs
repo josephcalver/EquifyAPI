@@ -1,29 +1,81 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EquifyAPI.Models
 {
+
     public class Deal
     {
         public int Id { get; set; }
+
+        [Display(Name = "Company Name")]
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string CompanyName { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime FoundedDate { get; set; }
+        [Required]
+        public int Founded { get; set; }
+
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string Country { get; set; }
+
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string Region { get; set; }
+
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string Sector { get; set; }
-        public string EnterpriseValue { get; set; }
+
+        [Display(Name = "Enterprise Fair Value")]
+        [Range(1, 1000)]
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal EnterpriseValue { get; set; }
+
+        [Display(Name = "Deal Type")]
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string DealType { get; set; }
 
+        [Display(Name = "Deal Origination Date")]
         [DataType(DataType.Date)]
         public DateTime DealOriginationDate { get; set; }
+
+        [Display(Name = "Deal Status")]
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string DealStatus { get; set; }
+
+        [Display(Name = "Fund Investing")]
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string FundInvesting { get; set; }
+
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string Currency { get; set; }
-        public decimal EquityRequired { get; set; }
+
+        [Display(Name = "Equity Required")]
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
+        public int EquityRequired { get; set; }
+
+        [Display(Name = "Deal Team Lead")]
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string DealTeamLead { get; set; }
+
+        [Display(Name = "Investor Relations Lead")]
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string InvestorRelationsLead { get; set; }
+
+        [Display(Name = "ESG Lead")]
+        [StringLength(30, MinimumLength = 3)]
+        [Required]
         public string ESGLead { get; set; }
     }
 }
