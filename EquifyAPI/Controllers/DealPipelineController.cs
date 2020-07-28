@@ -19,14 +19,14 @@ namespace EquifyAPI.Controllers
         {
             _context = context;
         }
-
+        
         // GET: api/DealPipeline
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Deal>>> GetDeal()
         {
             return await _context.Deal.ToListAsync();
         }
-
+       
         // GET: api/DealPipeline/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Deal>> GetDeal(int id)

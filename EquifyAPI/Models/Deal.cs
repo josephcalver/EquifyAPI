@@ -31,7 +31,6 @@ namespace EquifyAPI.Models
 
         [Display(Name = "Enterprise Fair Value")]
         [Range(1, 1000)]
-        [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal EnterpriseValue { get; set; }
 
@@ -41,6 +40,7 @@ namespace EquifyAPI.Models
         public string DealType { get; set; }
 
         [Display(Name = "Deal Origination Date")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DealOriginationDate { get; set; }
 
@@ -59,7 +59,6 @@ namespace EquifyAPI.Models
         public string Currency { get; set; }
 
         [Display(Name = "Equity Required")]
-        [StringLength(30, MinimumLength = 3)]
         [Required]
         public int EquityRequired { get; set; }
 

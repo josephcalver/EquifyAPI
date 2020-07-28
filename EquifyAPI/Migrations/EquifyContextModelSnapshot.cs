@@ -23,49 +23,72 @@ namespace EquifyAPI.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CompanyName")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Country")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Currency")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<DateTime>("DealOriginationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DealStatus")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<string>("DealTeamLead")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<string>("DealType")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<string>("ESGLead")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
-                    b.Property<string>("EnterpriseValue")
-                        .HasColumnType("TEXT");
+                    b.Property<decimal>("EnterpriseValue")
+                        .HasColumnType("decimal(18, 2)");
 
-                    b.Property<decimal>("EquityRequired")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("EquityRequired")
+                        .HasColumnType("INTEGER")
+                        .HasMaxLength(30);
 
-                    b.Property<DateTime>("FoundedDate")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Founded")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("FundInvesting")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<string>("InvestorRelationsLead")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Region")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.Property<string>("Sector")
-                        .HasColumnType("TEXT");
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
 
                     b.HasKey("Id");
 

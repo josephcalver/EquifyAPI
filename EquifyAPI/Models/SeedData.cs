@@ -295,7 +295,7 @@ namespace EquifyAPI.Models
                         Sector = "Sales & Marketing",
                         EnterpriseValue = 65.67M,
                         DealType = "Growth Equity",
-                        DealOriginationDate = DateTime.Parse("2019-11-31"),
+                        DealOriginationDate = DateTime.Parse("2019-11-30"),
                         DealStatus = "Closed",
                         FundInvesting = "ECP Fund I",
                         Currency = "INR",
