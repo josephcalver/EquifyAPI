@@ -22,7 +22,7 @@ namespace EquifyAPI.Controllers
         
         // GET: api/DealPipeline
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Deal>>> GetDeal()
+        public async Task<ActionResult<IEnumerable<Deal>>> GetDeals()
         {
             return await _context.Deal.ToListAsync();
         }
@@ -44,34 +44,19 @@ namespace EquifyAPI.Controllers
         // PUT: api/DealPipeline/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDeal(int id, Deal deal)
+        [HttpPut]
+        public async Task<ActionResult<Deal>> PutDeal(Deal deal)
         {
-            if (id != deal.Id)
+            if (!DealExists(deal.Id))
             {
-                return BadRequest();
+                return NotFound();
             }
-
+            
             _context.Entry(deal).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DealExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            await _context.SaveChangesAsync();
+            return await _context.Deal.FindAsync(deal.Id);
         }
+        
 
         // POST: api/DealPipeline
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
@@ -98,12 +83,12 @@ namespace EquifyAPI.Controllers
             _context.Deal.Remove(deal);
             await _context.SaveChangesAsync();
 
-            return deal;
+            return NoContent();
         }
 
         private bool DealExists(int id)
         {
-            return _context.Deal.Any(e => e.Id == id);
+            return _context.Deal.Any(d => d.Id == id);
         }
     }
 }
