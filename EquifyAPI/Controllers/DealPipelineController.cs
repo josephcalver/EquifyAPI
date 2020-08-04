@@ -22,9 +22,34 @@ namespace EquifyAPI.Controllers
         
         // GET: api/DealPipeline
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Deal>>> GetDeals()
+        public async Task<ActionResult<IEnumerable<Deal>>> GetDeals(string fundInvesting, string dealStatus,
+            string region, string sector, string dealType)
         {
-            return await _context.Deal.ToListAsync();
+            var deals = from d in _context.Deal
+                        select d;
+
+            if (!String.IsNullOrEmpty(fundInvesting))
+            {
+                deals = deals.Where(d => d.FundInvesting.Contains(fundInvesting));
+            }
+            if (!String.IsNullOrEmpty(dealStatus))
+            {
+                deals = deals.Where(d => d.DealStatus.Contains(dealStatus));
+            }
+            if (!String.IsNullOrEmpty(region))
+            {
+                deals = deals.Where(d => d.Region.Contains(region));
+            }
+            if (!String.IsNullOrEmpty(sector))
+            {
+                deals = deals.Where(d => d.Sector.Contains(sector));
+            }
+            if (!String.IsNullOrEmpty(dealType))
+            {
+                deals = deals.Where(d => d.DealType.Contains(dealType));
+            }
+
+            return await deals.ToListAsync();
         }
        
         // GET: api/DealPipeline/5
@@ -38,7 +63,7 @@ namespace EquifyAPI.Controllers
                 return NotFound();
             }
 
-            return deal;
+            return Ok(deal);
         }
 
         // PUT: api/DealPipeline/5
@@ -54,7 +79,7 @@ namespace EquifyAPI.Controllers
             
             _context.Entry(deal).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return await _context.Deal.FindAsync(deal.Id);
+            return Ok(await _context.Deal.FindAsync(deal.Id));
         }
         
 
